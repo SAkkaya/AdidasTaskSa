@@ -1,38 +1,37 @@
 package com.adidas.utilities;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * reads the properties file configuration.properties
+ */
 public class ConfigurationReader {
 
-    //#1- Create properties object
-    private static Properties properties = new Properties();
+    private static Properties properties;
 
     static {
 
         try {
-            //#2- Load the file into FileInputStream
-            FileInputStream file = new FileInputStream("configuration.properties");
+            // what file to read
+            String path = "configuration.properties";
+            // read the file into java, finds the file using the string path
+            FileInputStream input = new FileInputStream(path);
+            // properties --> class that store properties in key / value format
+            properties = new Properties();
+            // the values from the file input is loaded / fed in to the properties object
+            properties.load(input);
 
-            //#3- load properties object with the file (configuration.properties)
-            properties.load(file);
-
-            //close the file
-            file.close();
-
-        } catch (IOException e) {
-
-            System.out.println("File not found in Configuration properties.");
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
 
         }
-
     }
 
-    //USE THE ABOVE CREATED LOGIC TO CREATE A RE-USABLE STATIC METHOD
-    public static String getProperty(String keyWord){
+    public static String get(String keyName) {
 
-        return properties.getProperty(keyWord);
+        return properties.getProperty(keyName);
     }
 
 

@@ -20,9 +20,9 @@ public class AdidasBasicNavigation {
 
 //        Thread.sleep(2000);
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
         WebElement locatorLaptop = driver.findElement(By.xpath("//a[.='Laptops']"));
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
 
         wait.until(ExpectedConditions.elementToBeClickable(locatorLaptop));
 
